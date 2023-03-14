@@ -16,6 +16,6 @@ MonoBehaviour:
   handTracking: 0
   openMRC: 0
   faceTracking: 1
-  lipsyncTracking: 1
+  lipsyncTracking: 0
   eyeTracking: 0
   latelatching: 0

@@ -2159,9 +2159,9 @@ MonoBehaviour:
   customFps: 0
   screenFade: 0
   eyeTracking: 0
-  trackingMode: 1
+  trackingMode: 2
   faceTracking: 1
-  lipsyncTracking: 1
+  lipsyncTracking: 0
   lateLatching: 0
   foveationLevel: -1
   openMRC: 0
@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_Camera: {fileID: 2030530317}
   m_OriginBaseGameObject: {fileID: 987366412}
   m_CameraFloorOffsetObject: {fileID: 671444430}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.1176
 --- !u!4 &987366415
 Transform:
