@@ -105,9 +105,10 @@ public class FTTest : MonoBehaviour
     {
         if (PXR_Plugin.System.UPxr_QueryDeviceAbilities(PxrDeviceAbilities.PxrTrackingModeFaceBit))
         {
-            PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_FACE_DATA, ref faceTrackingInfo);
+            PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_FACELIP_DATA, ref faceTrackingInfo);
             blendShapeWeight = faceTrackingInfo.blendShapeWeight;
             float[] data = blendShapeWeight;
+            
             for (int i = 0; i < data.Length; ++i)
             {
                 if (indexList[i] >= 0)
@@ -115,7 +116,9 @@ public class FTTest : MonoBehaviour
                     skin.SetBlendShapeWeight(indexList[i], 100 * data[i]);
                 }
             }
+            /*
             tongueBlendShape.SetBlendShapeWeight(tongueIndex, 100 * data[51]);
+            
             leftEyeExample.SetBlendShapeWeight(leftLookUpIndex, 100 * data[31]);
             leftEyeExample.SetBlendShapeWeight(leftLookDownIndex, 100 * data[0]);
             leftEyeExample.SetBlendShapeWeight(leftLookInIndex, 100 * data[2]);
@@ -124,6 +127,17 @@ public class FTTest : MonoBehaviour
             rightEyeExample.SetBlendShapeWeight(rightLookDownIndex, 100 * data[12]);
             rightEyeExample.SetBlendShapeWeight(rightLookInIndex, 100 * data[11]);
             rightEyeExample.SetBlendShapeWeight(rightLookOutIndex, 100 * data[45]);
+            
+
+            leftEyeExample.SetBlendShapeWeight(leftLookUpIndex, 100 * data[36]);
+            leftEyeExample.SetBlendShapeWeight(leftLookDownIndex, 100 * data[38]);
+            leftEyeExample.SetBlendShapeWeight(leftLookInIndex, 100 * data[40]);
+            leftEyeExample.SetBlendShapeWeight(leftLookOutIndex, 100 * data[42]);
+            rightEyeExample.SetBlendShapeWeight(rightLookUpIndex, 100 * data[37]);
+            rightEyeExample.SetBlendShapeWeight(rightLookDownIndex, 100 * data[39]);
+            rightEyeExample.SetBlendShapeWeight(rightLookInIndex, 100 * data[41]);
+            rightEyeExample.SetBlendShapeWeight(rightLookOutIndex, 100 * data[43]);
+            */
         }
     }
 }

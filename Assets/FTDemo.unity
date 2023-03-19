@@ -2158,10 +2158,10 @@ MonoBehaviour:
   useDefaultFps: 1
   customFps: 0
   screenFade: 0
-  eyeTracking: 0
-  trackingMode: 2
+  eyeTracking: 1
+  trackingMode: 1
   faceTracking: 1
-  lipsyncTracking: 0
+  lipsyncTracking: 1
   lateLatching: 0
   foveationLevel: -1
   openMRC: 0
