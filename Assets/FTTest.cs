@@ -110,6 +110,12 @@ public class FTTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 开始面部追踪
+        PXR_MotionTracking.WantFaceTrackingService();
+        FaceTrackingStartInfo info = new FaceTrackingStartInfo();
+        info.mode = FaceTrackingMode.PXR_FTM_FACE_LIPS_BS;
+        PXR_MotionTracking.StartFaceTracking(ref info);
+
         for (int i = 0; i < indexList.Length; i++)
         {
             indexList[i] = skin.sharedMesh.GetBlendShapeIndex(blendShapeList[i]);
@@ -137,41 +143,52 @@ public class FTTest : MonoBehaviour
         {
             switch (PXR_Manager.Instance.trackingMode)
             {
-                case FaceTrackingMode.Hybrid:
+                case FaceTrackingMode.PXR_FTM_FACE_LIPS_BS:
                     PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_FACELIP_DATA, ref faceTrackingInfo);
 
                     break;
-                case FaceTrackingMode.FaceOnly:
+                case FaceTrackingMode.PXR_FTM_FACE:
                     PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_FACE_DATA, ref faceTrackingInfo);
 
                     break;
-                case FaceTrackingMode.LipsyncOnly:
+                case FaceTrackingMode.PXR_FTM_LIPS:
                     PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_LIP_DATA, ref faceTrackingInfo);
 
                     break;
             }
-            blendShapeWeight = faceTrackingInfo.blendShapeWeight;
-            float[] data = blendShapeWeight;
-            for (int i = 0; i < data.Length; ++i)
+            //blendShapeWeight = faceTrackingInfo.blendShapeWeight;
+            unsafe
             {
-                texts[i].text = $"{blendShapeList[i]}\n{(int)(data[i] * 120)}"; 
-
-                if (indexList[i] >= 0)
+                fixed (float* source = faceTrackingInfo.blendShapeWeight)
                 {
-                    skin.SetBlendShapeWeight(indexList[i], 100 * data[i]);
+                    for (int i = 0; i < 72; i++)
+                    {
+                        blendShapeWeight[i] = source[i];
+
+                        texts[i].text = $"{blendShapeList[i]}\n{(int)(blendShapeWeight[i] * 120)}";
+
+                        if (indexList[i] >= 0)
+                        {
+                            skin.SetBlendShapeWeight(indexList[i], 100 * blendShapeWeight[i]);
+                        }
+
+
+                    }
                 }
             }
             
-            tongueBlendShape.SetBlendShapeWeight(tongueIndex, 100 * data[51]);
+
             
-            leftEyeExample.SetBlendShapeWeight(leftLookUpIndex, 100 * data[31]);
-            leftEyeExample.SetBlendShapeWeight(leftLookDownIndex, 100 * data[0]);
-            leftEyeExample.SetBlendShapeWeight(leftLookInIndex, 100 * data[2]);
-            leftEyeExample.SetBlendShapeWeight(leftLookOutIndex, 100 * data[44]);
-            rightEyeExample.SetBlendShapeWeight(rightLookUpIndex, 100 * data[35]);
-            rightEyeExample.SetBlendShapeWeight(rightLookDownIndex, 100 * data[12]);
-            rightEyeExample.SetBlendShapeWeight(rightLookInIndex, 100 * data[11]);
-            rightEyeExample.SetBlendShapeWeight(rightLookOutIndex, 100 * data[45]);
+            tongueBlendShape.SetBlendShapeWeight(tongueIndex, 100 * blendShapeWeight[51]);
+            
+            leftEyeExample.SetBlendShapeWeight(leftLookUpIndex, 100 * blendShapeWeight[31]);
+            leftEyeExample.SetBlendShapeWeight(leftLookDownIndex, 100 * blendShapeWeight[0]);
+            leftEyeExample.SetBlendShapeWeight(leftLookInIndex, 100 * blendShapeWeight[2]);
+            leftEyeExample.SetBlendShapeWeight(leftLookOutIndex, 100 * blendShapeWeight[44]);
+            rightEyeExample.SetBlendShapeWeight(rightLookUpIndex, 100 * blendShapeWeight[35]);
+            rightEyeExample.SetBlendShapeWeight(rightLookDownIndex, 100 * blendShapeWeight[12]);
+            rightEyeExample.SetBlendShapeWeight(rightLookInIndex, 100 * blendShapeWeight[11]);
+            rightEyeExample.SetBlendShapeWeight(rightLookOutIndex, 100 * blendShapeWeight[45]);
             
         }
     }

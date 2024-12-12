@@ -14,8 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useContentProtect: 0
   handTracking: 0
+  adaptiveHand: 0
+  highFrequencyHand: 0
   openMRC: 0
   faceTracking: 1
   lipsyncTracking: 1
-  eyeTracking: 0
+  eyeTracking: 1
+  eyetrackingCalibration: 0
+  enableETFR: 0
   latelatching: 0
+  latelatchingDebug: 0
+  enableSubsampled: 0
+  bodyTracking: 0
+  adaptiveResolution: 0
+  stageMode: 0
+  videoSeeThrough: 0
+  spatialAnchor: 0
+  sceneCapture: 0
+  sharedAnchor: 0
+  spatialMesh: 0
+  meshLod: 0
+  superResolution: 0
+  normalSharpening: 0
+  qualitySharpening: 0
+  fixedFoveatedSharpening: 0
+  selfAdaptiveSharpening: 0
+  arFoundation: 0
+  mrSafeguard: 0
+  enableRecommendMSAA: 0
+  recommendSubsamping: 0
+  recommendMSAA: 1

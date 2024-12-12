@@ -4,9 +4,9 @@
 
 ## Environment：
 
-- PUI 5.4.0
+- PUI 5.11.0
 - Unity 2021.3.13f1
-- Pico Unity Integration SDK 2.1.4
+- Pico Unity Integration SDK 3.0.5
 
 ## Applicable devices:
 
@@ -33,9 +33,7 @@ To check the specific data, enable the debug UI.
 
 Method explanation:
 
-Get device Face Tracking ability: PXR_Plugin.System.UPxr_QueryDeviceAbilities(PxrDeviceAbilities.PxrTrackingModeFaceBit)
-
-Get Face Tracking Mode: PXR_Manager.Instance.trackingMode
+Get device Face Tracking ability: PXR_MotionTracking.GetFaceTrackingSupported
 
 Get Face Tracking data based on the mode and store in faceTrackingInfo: PXR_System.GetFaceTrackingData(0, GetDataType.PXR_GET_FACELIP_DATA, ref faceTrackingInfo);
 
